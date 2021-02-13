@@ -1,3 +1,7 @@
 from django.contrib import admin
 
-# Register your models here.
+from bauspartrackerapp.models import Bausparvertrag, Sparbeitrag, Buchung
+
+admin.site.register(Bausparvertrag, )
+admin.site.register(Sparbeitrag)
+admin.site.register(Buchung)
