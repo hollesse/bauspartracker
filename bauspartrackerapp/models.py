@@ -34,7 +34,8 @@ class Bausparvertrag(models.Model):
             return True
         return False
 
-
+    def __str__(self):
+        return str(self.id) + ' - ' + self.user.username + ' - ' + self.bausparkasse + ' ' + self.tarifname + ' (' + str(self.bausparsumme) + ')'
 
 
 class Sparbeitrag(models.Model):
@@ -52,6 +53,9 @@ class Sparbeitrag(models.Model):
     erste_buchung = models.DateField()
     letzte_buchung = models.DateField(null=True, blank=True)
     bausparvertrag = models.ForeignKey(Bausparvertrag, on_delete=models.CASCADE, related_name='sparbeitraege')
+
+    def __str__(self):
+        return str(self.bausparvertrag) + ' - ' + str(self.betrag) + ' (' + str(self.erste_buchung) + ' - ' + str(self.letzte_buchung) + ')'
 
 
 class SparbeitragJob(models.Model):
@@ -85,6 +89,9 @@ class Buchung(models.Model):
                                    related_name='buchungen',
                                    null=True,
                                    blank=True)
+
+    def __str__(self):
+        return str(self.bausparvertrag) + ' - ' + str(self.datum) + ' ' + str(self.art) + ' ' + str(self.betrag)
 
 
 def create_abschlussgebuehr_buchung(instance, created, raw, **kwargs):
