@@ -1,6 +1,8 @@
 {% extends 'base.html' %}
 {% load bootstrap5 %}
 {% load fontawesome_5 %}
+{% load bauspartracker_extras %}
+
 
 
 {% block content %}
@@ -15,6 +17,7 @@
                     <th>Bausparkasse</th>
                     <th>Tarifname</th>
                     <th>Bausparsumme</th>
+                    <th>Saldo</th>
                     <th>Aktionen</th>
                 </tr>
             </thead>
@@ -24,6 +27,7 @@
                     <td>{{ bausparvertrag.bausparkasse }}</td>
                     <td>{{ bausparvertrag.tarifname }}</td>
                     <td>{{ bausparvertrag.bausparsumme }}</td>
+                    <td>{{ bausparvertrag.buchungen | saldo}}</td>
                     <td>
                         <a href="{% url 'bausparvertrag_detail' bausparvertrag.id%}">{% fa5_icon 'info-circle' 'fas' %}</a>
                         <a href="{% url 'buchung_list' bausparvertrag.id%}">{% fa5_icon 'list' 'fas' %}</a>
@@ -36,4 +40,5 @@
     {% else %}
         <p>Es gibt bisher keine Buchungen!</p>
     {% endif %}
+    {% include 'pagination.html' %}
 {% endblock %}

@@ -11,7 +11,7 @@ class ListView(LoginRequiredMixin, generic.ListView):
     paginate_by = 10  # if pagination is desired
 
     def get_queryset(self):
-        return Buchung.objects.filter(bausparvertrag__id=self.kwargs['bausparvertrag__id']).order_by('datum')
+        return Buchung.objects.filter(bausparvertrag__id=self.kwargs['bausparvertrag__id']).order_by('datum').reverse()
 
     def get_context_data(self, ** kwargs):
         context = super().get_context_data(**kwargs)
