@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% load bootstrap5 %}
+
+{% block title %}Registrierung | Bauspar Tracker{% endblock %}
+
+{% block content %}
+  <h1>Registrierung</h1>
+
+  <form method="post">
+    {% csrf_token %}
+    {% bootstrap_form form %}
+
+    {% buttons %}
+      <button type="submit" class="btn btn-primary">Registrieren</button>
+    {% endbuttons %}
+  </form>
+{% endblock %}

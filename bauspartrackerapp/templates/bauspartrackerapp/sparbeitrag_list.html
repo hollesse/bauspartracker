@@ -1,8 +1,15 @@
 {% extends 'base.html' %}
 {% load bootstrap5 %}
+{% load fontawesome_5 %}
+
 
 {% block content %}
-    <h1>Sparbeiträge</h1>
+    <h1 class="pt-4">Sparbeiträge</h1>
+    <div class="d-flex">
+        <h2 class="flex-grow-1">{{ bausparvertrag.bausparkasse }} {{ bausparvertrag.tarifname }} ({{ bausparvertrag.bausparsumme }})</h2>
+        <a class="btn btn-primary align-self-center" href="{% url 'sparbeitrag_create' bausparvertrag.id %}" role="button">{% fa5_icon 'plus' 'fas' %} Neuer Sparbeitrag</a>
+    </div>
+
     {% if object_list %}
         <table class="table table-hover">
             <thead>

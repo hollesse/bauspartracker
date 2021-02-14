@@ -3,7 +3,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse
 from django.views import generic
 
-from bauspartrackerapp.models import Buchung
+from bauspartrackerapp.models import Buchung, Bausparvertrag
 
 
 class ListView(LoginRequiredMixin, generic.ListView):
@@ -12,6 +12,11 @@ class ListView(LoginRequiredMixin, generic.ListView):
 
     def get_queryset(self):
         return Buchung.objects.filter(bausparvertrag__id=self.kwargs['bausparvertrag__id']).order_by('datum')
+
+    def get_context_data(self, ** kwargs):
+        context = super().get_context_data(**kwargs)
+        context["bausparvertrag"] = Bausparvertrag.objects.get(id=self.kwargs['bausparvertrag__id'])
+        return context
 
 
 class BuchungCreateForm(forms.ModelForm):

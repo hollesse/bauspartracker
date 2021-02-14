@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% load bootstrap5 %}
+
+{% block title %}Logout | Bauspar Tracker{% endblock %}
+
+{% block head %}
+<meta http-equiv="refresh" content="5;url={% url 'index' %}" />
+{% endblock %}
+
+{% block content %}
+  <h1>Logout</h1>
+    <div class="alert alert-success">Sie wurden erfolgreich ausgeloggt!</div>
+
+{% endblock %}

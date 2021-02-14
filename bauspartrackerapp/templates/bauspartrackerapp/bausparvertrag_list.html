@@ -1,8 +1,13 @@
 {% extends 'base.html' %}
 {% load bootstrap5 %}
+{% load fontawesome_5 %}
+
 
 {% block content %}
-    <h1>Bausparverträge</h1>
+    <div class="d-flex pt-4">
+        <h1 class="flex-grow-1">Bausparverträge</h1>
+        <a class="btn btn-primary align-self-center" href="{% url 'bausparvertrag_create' %}" role="button">{% fa5_icon 'plus' 'fas' %} Neuer Bausparvertrag</a>
+    </div>
     {% if object_list %}
         <table class="table table-hover">
             <thead>
@@ -10,7 +15,7 @@
                     <th>Bausparkasse</th>
                     <th>Tarifname</th>
                     <th>Bausparsumme</th>
-                    <th>Benutzer</th>
+                    <th>Aktionen</th>
                 </tr>
             </thead>
             <tbody>
@@ -19,7 +24,11 @@
                     <td>{{ bausparvertrag.bausparkasse }}</td>
                     <td>{{ bausparvertrag.tarifname }}</td>
                     <td>{{ bausparvertrag.bausparsumme }}</td>
-                    <td>{{ bausparvertrag.user.username }}</td>
+                    <td>
+                        <a href="{% url 'bausparvertrag_detail' bausparvertrag.id%}">{% fa5_icon 'info-circle' 'fas' %}</a>
+                        <a href="{% url 'buchung_list' bausparvertrag.id%}">{% fa5_icon 'list' 'fas' %}</a>
+                        <a href="{% url 'sparbeitrag_list' bausparvertrag.id%}">{% fa5_icon 'piggy-bank' 'fas' %}</a>
+                    </td>
                 </tr>
                 {% endfor %}
             </tbody>
