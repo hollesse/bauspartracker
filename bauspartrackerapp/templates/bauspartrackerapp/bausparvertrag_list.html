@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load bootstrap5 %}
+
+{% block content %}
+    <h1>Bausparverträge</h1>
+    {% if object_list %}
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Bausparkasse</th>
+                    <th>Tarifname</th>
+                    <th>Bausparsumme</th>
+                    <th>Benutzer</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for bausparvertrag in object_list %}
+                <tr>
+                    <td>{{ bausparvertrag.bausparkasse }}</td>
+                    <td>{{ bausparvertrag.tarifname }}</td>
+                    <td>{{ bausparvertrag.bausparsumme }}</td>
+                    <td>{{ bausparvertrag.user.username }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>Es gibt bisher keine Buchungen!</p>
+    {% endif %}
+{% endblock %}

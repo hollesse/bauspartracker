@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load bootstrap5 %}
+
+{% block content %}
+    <h1>Buchungen</h1>
+    {% if object_list %}
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Datum</th>
+                    <th>Betrag</th>
+                    <th>Art</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for buchung in object_list %}
+                <tr>
+                    <td>{{ buchung.datum | date:"d.m.Y" }}</td>
+                    <td>{{ buchung.betrag }}</td>
+                    <td>{{ buchung.art }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>Es gibt bisher keine Buchungen!</p>
+    {% endif %}
+{% endblock %}

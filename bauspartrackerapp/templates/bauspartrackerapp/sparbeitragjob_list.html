@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load bootstrap5 %}
+
+{% block content %}
+    <h1>Sparbeitrag Jobs</h1>
+    {% if object_list %}
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Status</th>
+                    <th>Von</th>
+                    <th>Bis</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for job in object_list %}
+                <tr>
+                    <td>{{ job.pk }}</td>
+                    <td>{{ job.status }}</td>
+                    <td>{{ job.von_datum_inklusive | date:"d.m.Y" }}</td>
+                    <td>{{ job.bis_datum_inklusive | date:"d.m.Y" }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>Du hast bisher keine Jobs für Sparbeiträge angelegt!</p>
+    {% endif %}
+{% endblock %}

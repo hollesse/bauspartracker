@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% load bootstrap5 %}
+{% load bauspartracker_extras %}
+
+{% block content %}
+    <h1>Bausparvertrag {{ object.bausparkasse }} {{ object.tarifname }}</h1>
+    <div class="row">
+        <div class="col">
+            Bausparsumme
+        </div>
+        <div class="col">
+            {{ object.bausparsumme }}
+        </div>
+    </div>
+    {% if object.abschlussgebuehren_prozent %}
+    <div class="row">
+        <div class="col">
+            Abschlussgebühr
+        </div>
+        <div class="col">
+            {{ object.abschlussgebuehren_prozent }}% ({{ object.bausparsumme |percentage:object.abschlussgebuehren_prozent }})
+        </div>
+    </div>
+    {% endif %}
+    {% if object.abschlussgebuehren_in_euro %}
+    <div class="row">
+        <div class="col">
+            Abschlussgebühr
+        </div>
+        <div class="col">
+            {{ object.abschlussgebuehren_in_euro }}
+        </div>
+    </div>
+    {% endif %}
+    <div class="row">
+        <div class="col">
+            Laufende Gebühren
+        </div>
+        <div class="col">
+            {{ object.laufende_gebuehren_in_euro }} ({{ object.laufende_gebuehren_zeitraum}})
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            Zinsen Ansparphase
+        </div>
+        <div class="col">
+            {{ object.zinsen_ansparphase }}%
+        </div>
+    </div>
+{% endblock %}

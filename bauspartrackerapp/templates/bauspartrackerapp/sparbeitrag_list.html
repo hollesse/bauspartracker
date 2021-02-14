@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load bootstrap5 %}
+
+{% block content %}
+    <h1>Sparbeiträge</h1>
+    {% if object_list %}
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Erste Buchung</th>
+                    <th>Letze Buchung</th>
+                    <th>Betrag</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for sparbeitrag in object_list %}
+                <tr>
+                    <td>{{ sparbeitrag.erste_buchung | date:"d.m.Y" }}</td>
+
+                    <td>
+                        {% if sparbeitrag.letzte_buchung %}
+                        {{ sparbeitrag.letzte_buchung | date:"d.m.Y" }}
+                        {% else %}
+                        Keine
+                        {% endif %}
+                    </td>
+                    <td>{{ sparbeitrag.betrag }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>Du hast bisher keine Sparbeiträge angelegt!</p>
+    {% endif %}
+{% endblock %}
